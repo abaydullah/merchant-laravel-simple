@@ -29,7 +29,7 @@
                             @php
                                 $store = \App\Models\Store::where('slug',explode('//',explode('.',url()->current())[0])[1])->first();
                             @endphp
-                            {{$store->name}}
+                            {{$store?->name}}
                         </div>
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
@@ -74,7 +74,7 @@
                                                     @php
                                                     $store = \App\Models\Store::where('slug',explode('//',explode('.',url()->current())[0])[1])->first();
                                                     @endphp
-                                                    @foreach(\App\Models\Category::where('store_id',$store->id)->get() as  $category)
+                                                    @foreach(\App\Models\Category::where('store_id',$store?->id)->get() as  $category)
                                                    <li class="bg-gray-50 hover:bg-green-300 hover:text-white py-2 px-3 rounded-md font-semibold"><a href="{{route('merchant.category',$category->slug,false)}}">{{$category->name}}</a></li>
                                                     @endforeach
                                                 </ul>
