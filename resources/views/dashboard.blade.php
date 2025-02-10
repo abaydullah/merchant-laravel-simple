@@ -11,7 +11,17 @@
 
 
                 <div class="p-6 text-gray-900">
-
+                    @if(auth()->user()->role === 'admin')
+                        <div>
+                            <ul class="divide-y bg-gray-200 divide-gray-500 ">
+                                @foreach(\App\Models\User::where('role','merchant')->get() as  $merchant)
+                                    <li class="py-4 px-6">
+                                        <h2 class="text-2xl">{{$merchant->name}}</h2>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                 </div>
             </div>
         </div>
